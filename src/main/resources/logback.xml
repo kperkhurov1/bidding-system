@@ -1,0 +1,20 @@
+<configuration>
+    <appender name="common-logs" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+        </encoder>
+    </appender>
+
+    <appender name="delitime-logs" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <includeMdcKeyName>correlationId</includeMdcKeyName>
+            <includeMdcKeyName>appName</includeMdcKeyName>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <logger name="com.anderson" level="DEBUG">
+            <appender-ref ref="delitime-logs" />
+        </logger>
+        <appender-ref ref="common-logs" />
+    </root>
+</configuration>
